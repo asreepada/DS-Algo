@@ -51,22 +51,6 @@ void mergeSort(int *A,int len) {
 	
 }
 
-//Find all the pair in array equal to given sum
-void findAllPairsEqualToGivenSum(int *A,int st, int end,int sum) {
-	while(st<end) {		
-		if(A[st]+A[end] > sum) {
-			end--;
-		}
-		else if(A[st]+A[end] < sum) {
-			st++;
-		}
-		else {
-			cout<<"Pair is : [ "<<A[st]<<" , "<<A[end]<<" ]"<<endl;
-			st++;	
-		}
-	}
-}
-
 int main() {
 	int arr[] = {5,2,7,1,8,9};
 	int len = sizeof(arr)/sizeof(int);
@@ -77,7 +61,6 @@ int main() {
 	mergeSort(arr,len);
 	printList(arr,len);
 	cout<<endl;
-	
-	findAllPairsEqualToGivenSum(arr,0,len-1,10);
+		
 	return 0;
 }
