@@ -4,35 +4,18 @@
 
 using namespace std;
 
-int firstOccuranceOfInputVal(int *A, int low, int high, int valToSearch) {
+int findFirstOrLastOccuranceOfValue(int *A, int high, int valToSearch,bool flag) {
 	int mid = 0;	
-	int result;
-	
+	int result = -1;
+	int low = 0;
 	while(low<=high) {
 		mid = (low+high)/2;
 		if(valToSearch == A[mid]) {
 			result = mid;
-			high = mid-1;
-		} 			
-		else if(A[mid] > valToSearch) {
-			high = mid-1;		
-		}
-		else {
-			low = mid+1;
-		}
-	}
-	return result;
-}
-
-int lastOccuranceOfInputVal(int *A, int low, int high, int valToSearch) {
-	int mid = 0;	
-	int result;
-	
-	while(low<=high) {
-		mid = (low+high)/2;
-		if(valToSearch == A[mid]) {
-			result = mid;
-			low = mid+1;
+			if(flag)	//if flag = true, find first occurance of valToSearch
+				high = mid-1;
+			else // find last occurance of value
+				low = mid+1;
 		} 			
 		else if(A[mid] > valToSearch) {
 			high = mid-1;		
@@ -47,19 +30,18 @@ int lastOccuranceOfInputVal(int *A, int low, int high, int valToSearch) {
 
 int main() {
 	int A[] = {1,1,3,3,5,5,5,5,5,9,9,11};
-	int B[] = {3,5,6,7,8,9,10,14,15,17,23};
-	int len = sizeof(A)/sizeof(int) -1;
-	int lenB = sizeof(B)/sizeof(int) -1;
+	int len = sizeof(A)/sizeof(int) -1;	
 	int val = 5;
-
-	int fistOccurance = firstOccuranceOfInputVal(A,0,len,val);
-	int lastOccurance = lastOccuranceOfInputVal(A,0,len,val);
-	
-	cout<<"First occurance of value : "<<val<<" is at :  "<<fistOccurance<<endl;
-	cout<<"Last occurance of value : "<<val<<" is at :  "<<lastOccurance<<endl;
-	cout<<endl;
 	
 	
+	int fistOccurance = findFirstOrLastOccuranceOfValue(A,len,val,true);
+	if(fistOccurance == -1)
+		cout<<"value not found in the given list"<<endl;
+	else {
+		cout<<"First occurance of value : "<<val<<" is at :  "<<fistOccurance<<endl;
+		int lastOccurance = findFirstOrLastOccuranceOfValue(A,len,val,false);
+		cout<<"Last occurance of value : "<<val<<" is at :  "<<lastOccurance<<endl;
+	}
 	
 	return 0;
 }
