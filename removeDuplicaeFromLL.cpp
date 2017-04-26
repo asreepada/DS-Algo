@@ -59,10 +59,6 @@ void removeDuplicateFromList(Node **head) {
 	}	
 }
 
-//sort and remove duplicates
-void sortAndRemoveDup(Node **head) {
-	
-}
 
 int main() {
 	Node *list1=NULL;
