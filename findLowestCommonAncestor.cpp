@@ -47,7 +47,7 @@ Node* findLowestCommonAncestor(Node *root,int p, int q) {
 	Node* right = findLowestCommonAncestor(root->right,p,q);
 	
 	if(left!=NULL && right != NULL)
-		return root;
+		return root; // lowest common ancestor
 	else 
 		return left?left:right;	
 }
